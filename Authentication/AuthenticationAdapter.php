@@ -160,4 +160,28 @@ class AuthenticationAdapter implements AuthenticationAdapterInterface
         return $result;
     }
 
+    /**
+     * Function to send Delete Request to SaferPAy Management API
+     *
+     * @param array $headers
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
+    public function sendDeleteRequest($headers, $url, $username, $password)
+    {
+        $client = new Client($url, [
+            'adapter' => Curl::class,
+            'curloptions' => [CURLOPT_RETURNTRANSFER => true],
+        ]);
+        $client->setMethod(Request::METHOD_DELETE);
+        $client->setHeaders($headers);
+        $client->setAuth($username, $password);
+        $response = $client->send();
+        if (!$response->isSuccess()) {
+            throw new \UnexpectedValueException("Failed to delete access token: " . $response->getStatusCode());
+        }
+        return true;
+    }
 }

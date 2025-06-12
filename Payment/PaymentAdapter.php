@@ -107,9 +107,6 @@ class PaymentAdapter extends BuildContainer implements PaymentAdapterInterface
                 $initializeData['RegisterAlias'] = $this->getRegisterAlias();
             }
             $initializeData['Notification'] = $this->getNotificationContainer($bodyData);
-            if (isset($bodyData['issuerId']) && !empty($bodyData['issuerId'])) {
-                $initializeData['PaymentMethodsOptions']['Ideal']['IssuerId']= $bodyData['issuerId'];
-            }
 //            if (isset($bodyData['Attachment']) && !empty($bodyData['Attachment'])) {
 //                $initializeData['PaymentMethodsOptions']['Klarna']['Attachment']= $bodyData['Attachment'];
 //            }
@@ -277,6 +274,9 @@ class PaymentAdapter extends BuildContainer implements PaymentAdapterInterface
         }
         if (isset($bodyData['aliasId']) && !empty($bodyData['aliasId'])) {
             $authorizeDirectData['PaymentMeans']['Alias']['Id'] = $bodyData['aliasId'];
+        }
+        if (isset($bodyData['recurring']) && !empty($bodyData['recurring'])) {
+            $authorizeDirectData['Payment']['Recurring']['Initial'] = true;
         }
 
         return $authorizeDirectData;

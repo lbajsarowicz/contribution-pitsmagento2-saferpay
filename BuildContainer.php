@@ -77,6 +77,9 @@ class BuildContainer
                 'PreAuth' => $preAuth
             ];
         }
+        if (isset($bodyData['payer_note']) && !empty($bodyData['payer_note'])) {
+            $bodyFormData['PayerNote'] = $bodyData['payer_note'];
+        }
 
         return $bodyFormData;
     }

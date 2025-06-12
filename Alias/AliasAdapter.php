@@ -128,4 +128,18 @@ class AliasAdapter extends BuildContainer implements AliasAdapterInterface
                 ]
         ];
     }
+
+    /**
+     * Function to build Alias List body Data for Inquire API
+     *
+     * @param array $bodyData
+     * @return array
+     */
+    public function buildAliasInquireData(array $bodyData): array
+    {
+        return [
+            'RequestHeader' => $this->getRequestHeaderContainer($bodyData),
+            'AliasId' => $bodyData['AliasId']
+        ];
+    }
 }

@@ -84,11 +84,6 @@ class Constants
     const CARD_HOLDER_NAME_MANDATORY = 'MANDATORY';
 
     /**
-     * Masterpass wallet
-     */
-    const SAFERPAY_MASTERPASS_WALLET = 'MASTERPASS';
-
-    /**
      * Applepay wallet
      */
     const SAFERPAY_APPLEPAY_WALLET = 'APPLEPAY';
